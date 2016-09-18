@@ -29,7 +29,9 @@ case class Purchase(items: List[String]) {
     helper(items, Map()).values.toList
   }
 
-  val getPurchaseLength: Int = baggingArea.foldLeft(0)(_ + _.amount)
+  lazy val getPurchaseLength: Int = baggingArea.foldLeft(0)(_ + _.amount)
 
-  def getTotalCost: Double = baggingArea.foldLeft(0.0)((acc, i) => acc + (i.cost * i.amount))
+  lazy val getTotalCost: Double = baggingArea.foldLeft(0.0)((acc, i) => acc + (i.cost * i.amount))
+
+  lazy val getSummary: String = ???
 }

@@ -116,5 +116,15 @@ class CheckoutSpec extends FreeSpec with Matchers {
         purchase.getTotalCost shouldBe (3 * .60 + 3 * .25) +- 0.001
       }
     }
+    "print summary" - {
+      "for empty basket" - {
+        val purchase = Checkout.makePurchase(basketEmpty)
+        purchase.getSummary shouldBe "[] = £0.00"
+      }
+      "for basket with one Apple" - {
+        val purchase = Checkout.makePurchase(basket1Apple)
+        purchase.getSummary shouldBe "[1x Apple] = £0.60"
+      }
+    }
   }
 }
