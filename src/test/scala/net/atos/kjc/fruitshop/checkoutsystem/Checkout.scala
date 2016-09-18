@@ -9,6 +9,7 @@ class CheckoutSpec extends FreeSpec with Matchers {
 
   val apple = "Apple"
   val invalidProductName = "InvalidProductName"
+  val orange = "Orange"
 
   val basketEmpty: List[String] = List()
 
@@ -16,7 +17,13 @@ class CheckoutSpec extends FreeSpec with Matchers {
   val basket2Apples:List[String] = basket1Apple :+ apple
   val basket3Apples:List[String] = basket2Apples :+ apple
 
+  val basket1Orange: List[String] = List(orange)
+  val basket2Oranges: List[String] = basket1Orange :+ orange
+  val basket3Oranges: List[String] = basket2Oranges :+ orange
+
   val basket1InvalidProduct:List[String] = List(invalidProductName)
+
+  val basketMics: List[String] = basket3Oranges ::: basket3Apples ::: basket1InvalidProduct
 
   "Checkout system should" - {
     "Present right name" - {
@@ -41,10 +48,21 @@ class CheckoutSpec extends FreeSpec with Matchers {
       "contain tree Apples" - {
         Checkout.makePurchase(basket3Apples).baggingArea.length shouldBe 3
       }
-      "be emty for non valid product" - {
+      "be empty for non valid product" - {
         Checkout.makePurchase(basket1InvalidProduct).baggingArea.length shouldBe 0
       }
-
+      "contain one Orange" - {
+        Checkout.makePurchase(basket1Orange).baggingArea.length shouldBe 1
+      }
+      "contain two Oranges" - {
+        Checkout.makePurchase(basket2Oranges).baggingArea.length shouldBe 2
+      }
+      "contain tree Oranges" - {
+        Checkout.makePurchase(basket3Oranges).baggingArea.length shouldBe 3
+      }
+      "contain six items for mics basket" - {
+        Checkout.makePurchase(basketMics).baggingArea.length shouldBe 6
+      }
     }
 
 
