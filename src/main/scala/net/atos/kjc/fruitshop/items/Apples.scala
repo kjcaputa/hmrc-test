@@ -1,5 +1,5 @@
 package net.atos.kjc.fruitshop.items
 
-case class Apples() {
-  val cost: Double = 0.60
+case class Apples(amount: Int) extends Items {
+  override val cost: Double = 0.60
 }

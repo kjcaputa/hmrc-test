@@ -41,28 +41,28 @@ class CheckoutSpec extends FreeSpec with Matchers {
     }
     "The bagging area should" - {
       "contain one Apple" - {
-        Checkout.makePurchase(basket1Apple).baggingArea.length shouldBe 1
+        Checkout.makePurchase(basket1Apple).getPurchaseLength shouldBe 1
       }
       "contain two Apples" - {
-        Checkout.makePurchase(basket2Apples).baggingArea.length shouldBe 2
+        Checkout.makePurchase(basket2Apples).getPurchaseLength shouldBe 2
       }
       "contain tree Apples" - {
-        Checkout.makePurchase(basket3Apples).baggingArea.length shouldBe 3
+        Checkout.makePurchase(basket3Apples).getPurchaseLength shouldBe 3
       }
       "be empty for non valid product" - {
-        Checkout.makePurchase(basket1InvalidProduct).baggingArea.length shouldBe 0
+        Checkout.makePurchase(basket1InvalidProduct).getPurchaseLength shouldBe 0
       }
       "contain one Orange" - {
-        Checkout.makePurchase(basket1Orange).baggingArea.length shouldBe 1
+        Checkout.makePurchase(basket1Orange).getPurchaseLength shouldBe 1
       }
       "contain two Oranges" - {
-        Checkout.makePurchase(basket2Oranges).baggingArea.length shouldBe 2
+        Checkout.makePurchase(basket2Oranges).getPurchaseLength shouldBe 2
       }
       "contain tree Oranges" - {
-        Checkout.makePurchase(basket3Oranges).baggingArea.length shouldBe 3
+        Checkout.makePurchase(basket3Oranges).getPurchaseLength shouldBe 3
       }
       "contain six items for mics basket" - {
-        Checkout.makePurchase(basketMics).baggingArea.length shouldBe 6
+        Checkout.makePurchase(basketMics).getPurchaseLength shouldBe 6
       }
       "be a type of Items for misc basket"- {
         Checkout.makePurchase(basketMics).baggingArea.head shouldBe a [Items]
@@ -72,10 +72,10 @@ class CheckoutSpec extends FreeSpec with Matchers {
     "For items" - {
       "The cost" - {
         "unit of Apple should be 0.60" - {
-          Apples().cost shouldBe 0.60 +- 0.001
+          Apples(1).cost shouldBe 0.60 +- 0.001
         }
         "unit of Oranges should be 0.25" - {
-          Oranges().cost shouldBe 0.25 +- 0.001
+          Oranges(1).cost shouldBe 0.25 +- 0.001
         }
       }
     }

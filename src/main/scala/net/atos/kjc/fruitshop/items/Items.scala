@@ -1,5 +1,6 @@
 package net.atos.kjc.fruitshop.items
 
-class Items {
-
+abstract class Items {
+  val cost: Double
+  val amount: Int
 }
