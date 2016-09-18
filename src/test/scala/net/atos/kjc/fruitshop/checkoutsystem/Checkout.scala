@@ -2,7 +2,7 @@ package net.atos.kjc.fruitshop.checkoutsystem
 
 import org.scalatest.{FreeSpec, Matchers}
 import Matchers._
-import net.atos.kjc.fruitshop.items.Apples
+import net.atos.kjc.fruitshop.items.{Apples, Oranges}
 import net.atos.kjc.fruitshop.purchase.Purchase
 
 class CheckoutSpec extends FreeSpec with Matchers {
@@ -71,7 +71,7 @@ class CheckoutSpec extends FreeSpec with Matchers {
           Apples().cost shouldBe 0.60 +- 0.001
         }
         "unit of Oranges should be 0.25" - {
-          Apples().cost shouldBe 0.25 +- 0.001
+          Oranges().cost shouldBe 0.25 +- 0.001
         }
       }
     }
