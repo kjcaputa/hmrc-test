@@ -42,7 +42,7 @@ class CheckoutSpec extends FreeSpec with Matchers {
         Checkout.makePurchase(basket3Apples).baggingArea.length shouldBe 3
       }
       "be emty for non valid product" - {
-        Checkout.makePurchase(basket3Apples).baggingArea.length shouldBe 3
+        Checkout.makePurchase(basket1InvalidProduct).baggingArea.length shouldBe 0
       }
 
     }
