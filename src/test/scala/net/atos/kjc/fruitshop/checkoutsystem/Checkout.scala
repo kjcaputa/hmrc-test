@@ -2,7 +2,7 @@ package net.atos.kjc.fruitshop.checkoutsystem
 
 import org.scalatest.{FreeSpec, Matchers}
 import Matchers._
-import net.atos.kjc.fruitshop.items.{Apples, Oranges}
+import net.atos.kjc.fruitshop.items.{Apples, Oranges, Items}
 import net.atos.kjc.fruitshop.purchase.Purchase
 
 class CheckoutSpec extends FreeSpec with Matchers {
@@ -64,6 +64,10 @@ class CheckoutSpec extends FreeSpec with Matchers {
       "contain six items for mics basket" - {
         Checkout.makePurchase(basketMics).baggingArea.length shouldBe 6
       }
+      "be a type of Items for misc basket"- {
+        Checkout.makePurchase(basketMics).baggingArea.head shouldBe a [Items]
+      }
+
     }
     "For items" - {
       "The cost" - {
