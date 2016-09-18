@@ -1,5 +1,5 @@
 package net.atos.kjc.fruitshop.items
 
 case class Apples() {
-  val cost: Double = ???
+  val cost: Double = 0.60
 }
