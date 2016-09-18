@@ -81,5 +81,11 @@ class PurchaseSpec extends FreeSpec with Matchers with TestConstanceSpec{
       val purchase = Purchase(basket1Apple)
       purchase.getSummary shouldBe "[1x Apple] = £0.60"
     }
+    "for basket with 3x Apple and 3x Orange" - {
+      val purchase = Purchase(basketMics)
+      purchase.getSummary should contain "3x Apple"
+      purchase.getSummary should contain "3x Orange"
+      purchase.getSummary should endWith "£2.55"
+    }
   }
 }
