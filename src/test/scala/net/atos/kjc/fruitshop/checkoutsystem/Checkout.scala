@@ -2,7 +2,7 @@ package net.atos.kjc.fruitshop.checkoutsystem
 
 import org.scalatest.{FreeSpec, Matchers}
 import Matchers._
-import net.atos.kjc.fruitshop.items.{Apples, Oranges, Items}
+import net.atos.kjc.fruitshop.items.{Apples, Items, Oranges}
 import net.atos.kjc.fruitshop.purchase.Purchase
 
 class CheckoutSpec extends FreeSpec with Matchers {
@@ -64,8 +64,8 @@ class CheckoutSpec extends FreeSpec with Matchers {
       "contain six items for mics basket" - {
         Checkout.makePurchase(basketMics).getPurchaseLength shouldBe 6
       }
-      "be a type of Items for misc basket"- {
-        Checkout.makePurchase(basketMics).baggingArea.head shouldBe a [Items]
+      "be a type of Items for misc basket" - {
+        Checkout.makePurchase(basketMics).baggingArea.head shouldBe a[Items]
       }
 
     }
@@ -78,6 +78,17 @@ class CheckoutSpec extends FreeSpec with Matchers {
           Oranges(1).cost shouldBe 0.25 +- 0.001
         }
       }
+      "should indicate right amount of items in cattegory" - {
+        Apples(2).amount shouldBe 2
+        Apples(6).amount shouldBe 6
+        Oranges(2).amount shouldBe 2
+        Oranges(6).amount shouldBe 6
+      }
+      "should inherit from the same Item class" - {
+        Apples(1) shouldBe a[Items]
+        Oranges(1) shouldBe a[Items]
+      }
+
     }
     "total cost" - {
       "of 1 x Apples should equal to 0.60" - {
