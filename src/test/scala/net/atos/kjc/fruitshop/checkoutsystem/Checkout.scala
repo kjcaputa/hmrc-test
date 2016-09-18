@@ -67,8 +67,11 @@ class CheckoutSpec extends FreeSpec with Matchers {
     }
     "For items" - {
       "The cost" - {
-        "of Apple should be 0.60" - {
+        "unit of Apple should be 0.60" - {
           Apples().cost shouldBe 0.60 +- 0.001
+        }
+        "unit of Oranges should be 0.25" - {
+          Apples().cost shouldBe 0.25 +- 0.001
         }
       }
     }
