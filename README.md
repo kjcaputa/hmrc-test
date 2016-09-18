@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kjcaputa/hmrc-test.svg?branch=HTKJC-ST01)](https://travis-ci.org/kjcaputa/hmrc-test) 
+[![Build Status](https://travis-ci.org/kjcaputa/hmrc-test.svg?branch=master)](https://travis-ci.org/kjcaputa/hmrc-test) 
 
 # hmrc-test
 Simple Scala application - TDD
