@@ -80,25 +80,29 @@ class CheckoutSpec extends FreeSpec with Matchers {
       }
     }
     "total cost" - {
-      "of 1 x Apples equal to 0.60" - {
+      "of 1 x Apples should equal to 0.60" - {
         val purchase = Checkout.makePurchase(basket1Apple)
-        assert(purchase.getTotalCost === 0.60)
+        purchase.getTotalCost shouldBe 0.60 +- 0.001
       }
+
       "of 2 x Apples equal to 1.20" - {
-        val purchase = Checkout.makePurchase(basket1Apple)
-        assert(purchase.getTotalCost === 1.20)
+        val purchase = Checkout.makePurchase(basket2Apples)
+        purchase.getTotalCost shouldBe 1.20 +- 0.001
       }
-      "of InvalidItems equal to 0.0" - {
+
+      "of InvalidItems should equal to 0.0" - {
         val purchase = Checkout.makePurchase(basket1InvalidProduct)
-        assert(purchase.getTotalCost === 0.0)
+        purchase.getTotalCost shouldBe 0.0 +- 0.001
       }
-      "of empty basket equal to 0.0" - {
+
+      "of empty basket should equal to 0.0" - {
         val purchase = Checkout.makePurchase(basketEmpty)
-        assert(purchase.getTotalCost === 0.0)
+        purchase.getTotalCost shouldBe 0.0 +- 0.001
       }
+
       "of 3 x Apples & 3x Orange & 1x InvalidItem equal to (3*0.60+3*0.25)" - {
-        val purchase = Checkout.makePurchase(basket1Apple)
-        assert(purchase.getTotalCost === (3 * .60 + 3 * .25))
+        val purchase = Checkout.makePurchase(basketMics)
+        purchase.getTotalCost shouldBe (3 * .60 + 3 * .25) +- 0.001
       }
     }
   }

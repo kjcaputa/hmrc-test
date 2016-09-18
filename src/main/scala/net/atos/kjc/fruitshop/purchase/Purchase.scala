@@ -31,5 +31,5 @@ case class Purchase(items: List[String]) {
 
   val getPurchaseLength: Int = baggingArea.foldLeft(0)(_ + _.amount)
 
-  def getTotalCost: Double = ???
+  def getTotalCost: Double = baggingArea.foldLeft(0.0)((acc, i) => acc + (i.cost * i.amount))
 }
