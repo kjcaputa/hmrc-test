@@ -33,5 +33,6 @@ case class Purchase(items: List[String]) {
 
   lazy val getTotalCost: Double = baggingArea.foldLeft(0.0)((acc, i) => acc + (i.cost * i.amount))
 
-  lazy val getSummary: String = ???
+  lazy val getSummary: String =
+    baggingArea.map(item => "%dx %s".format(item.amount, item.name)).mkString("[", ", ", "] = £%2.2f".format(getTotalCost))
 }
