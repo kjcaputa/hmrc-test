@@ -1,3 +1,5 @@
 package net.atos.kjc.fruitshop.purchase
 
-case class Purchase()
+case class Purchase(){
+  val baggingArea = ???
+}

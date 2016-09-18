@@ -14,8 +14,16 @@ class CheckoutSpec extends FreeSpec with Matchers {
       Checkout.name shouldBe checkoutName
     }
 
-    "Return an empty purchase for empty list of products" - {
-      Checkout.makePurchase(basketEmpty) shouldBe a [Purchase]
+    "When list of products is empty should" - {
+      "Return an empty Purchase" - {
+        Checkout.makePurchase(basketEmpty) shouldBe a[Purchase]
+      }
+      "Return empty bagging area" - {
+        assert(Checkout.makePurchase(basketEmpty).baggingArea.equals(Nil))
+        //        Checkout.makePurchase(basketEmpty).baggingArea shouldBe Nil
+      }
     }
+
+
   }
 }
