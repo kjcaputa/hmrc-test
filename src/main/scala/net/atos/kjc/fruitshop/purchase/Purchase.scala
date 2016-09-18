@@ -1,8 +1,9 @@
 package net.atos.kjc.fruitshop.purchase
 
 import net.atos.kjc.fruitshop.items.{Apples, InvalidProducts, Items, Oranges}
+import net.atos.kjc.fruitshop.offers.Offer
 
-case class Purchase(items: List[String]) {
+case class Purchase(items: List[String], offers: List[Offer] = Nil) {
   val baggingArea: List[Items] = {
 
     def productChecker(item: String): Items = item match {
@@ -31,7 +32,16 @@ case class Purchase(items: List[String]) {
 
   lazy val getPurchaseLength: Int = baggingArea.foldLeft(0)(_ + _.amount)
 
-  lazy val getTotalCost: Double = baggingArea.foldLeft(0.0)((acc, i) => acc + (i.cost * i.amount))
+  lazy val getTotalCost: Double = baggingArea.foldLeft(0.0) { (acc, i) =>
+    offers.find(_.item.getClass.getCanonicalName == i.getClass.getCanonicalName) match {
+      case Some(x) =>
+        val m = i.amount % x.amount
+        acc + (i.cost * x.priceInRelationToUnitCost * (i.amount - m) / x.amount) + (i.cost * m)
+      case x =>
+        acc + (i.cost * i.amount)
+    }
+  }
+
 
   lazy val getSummary: String =
     baggingArea.map(item => "%dx %s".format(item.amount, item.name)).mkString("[", ", ", "] = £%2.2f".format(getTotalCost))
