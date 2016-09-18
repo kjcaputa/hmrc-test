@@ -1,6 +1,7 @@
 package net.atos.kjc.fruitshop.purchase
 
 import net.atos.kjc.fruitshop.TestConstanceSpec
+import net.atos.kjc.fruitshop.checkoutsystem.Checkout
 import net.atos.kjc.fruitshop.items.Items
 import org.scalatest.{FreeSpec, Matchers}
 
@@ -82,10 +83,10 @@ class PurchaseSpec extends FreeSpec with Matchers with TestConstanceSpec{
       purchase.getSummary shouldBe "[1x Apple] = £0.60"
     }
     "for basket with 3x Apple and 3x Orange" - {
-      val purchase = Purchase(basketMics)
-      purchase.getSummary should contain "3x Apple"
-      purchase.getSummary should contain "3x Orange"
-      purchase.getSummary should endWith "£2.55"
+      val purchase = Checkout.makePurchase(basketMics)
+      assert(purchase.getSummary.contains("3x Apple"))
+      assert(purchase.getSummary.contains("3x Orange"))
+      assert(purchase.getSummary.endsWith("£2.55"))
     }
   }
 }
