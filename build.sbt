@@ -8,7 +8,7 @@ lazy val fruitshop = (project in file(".")).
   settings(commonSettings: _*).
   settings(
     version := "0.1.0",
-    name := "hmrc-kjc-checkout-system"
+    name := "checkout-system"
   )
 
 
